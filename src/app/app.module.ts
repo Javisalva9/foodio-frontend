@@ -13,7 +13,9 @@ import { MatToolbarModule,
          MatCardModule,
          MatTableModule,
          MatDividerModule,
-         MatSnackBarModule } from '@angular/material';
+         MatSnackBarModule,
+
+         MatListModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './components/list/list.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 
 import { IssueService } from './services/issue.service';
 
@@ -29,6 +32,7 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent },
   { path: 'edit/:id', component: EditComponent },
   { path: 'list', component: ListComponent },
+  { path: 'shopping-list', component: ShoppingListComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full'}
 ];
 
@@ -37,7 +41,8 @@ const routes: Routes = [
     AppComponent,
     ListComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    ShoppingListComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,9 @@ const routes: Routes = [
     MatCardModule,
     MatTableModule,
     MatDividerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+
+    MatListModule
   ],
   providers: [IssueService],
   bootstrap: [AppComponent]

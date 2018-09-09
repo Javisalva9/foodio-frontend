@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class IssueService {
 
-  uri = 'http://localhost:4000';
-
+  // uri = 'http://localhost:4000';
+  uri = 'https://foodio-backend.herokuapp.com'
   constructor(private http: HttpClient) {
   }
 
