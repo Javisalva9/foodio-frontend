@@ -21,7 +21,7 @@ export class ProductService {
   //   return this.http.get(`${this.uri}/products/${id}`);
   // }
 
-  addProduct(name, price) {
+  addProduct(name, price = 0) {
     const product = {
       name: name,
       price: price

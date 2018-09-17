@@ -1,5 +1,5 @@
 export interface Product {
-    id: String;
+    _id: String;
     name: String;
     price: Number;
     onCart: Boolean;

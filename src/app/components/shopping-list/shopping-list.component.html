@@ -1,15 +1,19 @@
-<!-- two line list -->
-<mat-list class="shopping-list-container">
-  <mat-list-item *ngFor="let product of products">
-    <h3 matLine *ngIf=!product.onCart (click)=addToCart(product)> {{product.name}} </h3>
-  </mat-list-item>
-</mat-list>
 
-<!-- two line list -->
-
-<mat-list class="shopping-list-container">
-  <p>RECENT</p>
-  <mat-list-item *ngFor="let product of products">
-    <h3 matLine *ngIf=product.onCart (click)=addToCart(product)> {{product.name}} </h3>
-  </mat-list-item>
-</mat-list>
+<div class="shopping-list-container">
+  <form [formGroup]="addForm" class="add-new-product">
+    <mat-form-field>
+      <input matInput class="inputaa" placeholder="I have to buy..." formControlName="productName" #productName>
+    </mat-form-field>
+    <button type="submit" (click)="addProduct(productName.value)" [disabled]="addForm.pristine || addForm.invalid" color="primary">+</button>
+  </form>
+  <mat-list class="product-list-container">
+    <mat-list-item *ngFor="let product of products">
+      <h3 matLine (click)=addToCart(product)> {{product.name}} </h3>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item *ngFor="let product of productsOnCart">
+      <h3 matLine (click)=removeFromCart(product)> {{product.name}} </h3>
+    </mat-list-item>
+  </mat-list>
+  <button (click)="shop(productsOnCart)" color="primary">Shop</button>
+</div>

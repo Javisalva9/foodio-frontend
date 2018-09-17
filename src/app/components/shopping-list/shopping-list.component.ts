@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
@@ -12,11 +13,18 @@ import { ProductService } from '../../services/product.service';
 export class ShoppingListComponent implements OnInit {
 
   products: Product[];
+  productsOnCart: Product[];
+  addForm: FormGroup;
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private formBuilder: FormBuilder, private router: Router) {
+    this.addForm = this.formBuilder.group({
+      productName: ['', Validators.required]
+    });
+   }
 
   ngOnInit() {
     this.fetchProducts();
+    this.productsOnCart = [];
   }
 
   fetchProducts() {
@@ -29,17 +37,33 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
-  editProduct(id) {
-    this.router.navigate([`/edit/${id}`]);
-  }
-
   deleteProduct(id) {
     this.productService.deleteProduct(id).subscribe(() => {
       this.fetchProducts();
     });
   }
 
-  addToCart(product: Product) {
-    product.onCart = !product.onCart;
+  addProduct(productName) {
+    this.productService.addProduct(productName).subscribe(() => {
+      this.fetchProducts();
+    });
   }
+
+  addToCart(product: Product) {
+    this.productsOnCart.push(product)
+    this.products.splice(this.products.indexOf(product), 1)
+  }
+
+  removeFromCart(product: Product) {
+    this.products.push(product)
+    this.productsOnCart.splice(this.productsOnCart.indexOf(product), 1)
+  }
+
+  shop(shopItems:Product[]) {
+    shopItems.forEach(product => {
+      this.productsOnCart = []
+      this.deleteProduct(product._id)
+    });
+  }
+
 }

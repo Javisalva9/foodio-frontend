@@ -1,7 +1,18 @@
 .shopping-list-container {
-  background-image: linear-gradient(#c1c1c1, #d8d8d8);
-  opacity: 0.6;
-  margin: 0 auto;
+  margin: 90px auto;
   max-width: 50%;
 
+  .product-list-container {
+    background-color: #FF7340;
+    opacity: 0.6;
+  }
+
+  .add-new-product {
+    color: white;
+    padding-left: 16px;
+
+    button {
+      margin-left: 16px;
+    }
+  }
 }
