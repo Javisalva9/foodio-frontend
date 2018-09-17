@@ -15,6 +15,7 @@ import { MatToolbarModule,
          MatDividerModule,
          MatSnackBarModule,
 
+         MatProgressSpinnerModule,
          MatListModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -33,7 +34,7 @@ const routes: Routes = [
   { path: 'edit/:id', component: EditComponent },
   { path: 'list', component: ListComponent },
   { path: 'shopping-list', component: ShoppingListComponent },
-  { path: '', redirectTo: '/list', pathMatch: 'full'}
+  { path: '', redirectTo: '/shopping-list', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -62,6 +63,7 @@ const routes: Routes = [
     MatDividerModule,
     MatSnackBarModule,
 
+    MatProgressSpinnerModule,
     MatListModule
   ],
   providers: [IssueService],

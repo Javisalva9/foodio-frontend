@@ -15,6 +15,7 @@ export class ShoppingListComponent implements OnInit {
   products: Product[];
   productsOnCart: Product[];
   addForm: FormGroup;
+  loading = true;
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder, private router: Router) {
     this.addForm = this.formBuilder.group({
@@ -31,6 +32,7 @@ export class ShoppingListComponent implements OnInit {
     this.productService
     .getProducts()
     .subscribe((data: Product[]) => {
+      this.loading = false;
       this.products = data;
       console.log('Data requested ... ');
       console.log(this.products);

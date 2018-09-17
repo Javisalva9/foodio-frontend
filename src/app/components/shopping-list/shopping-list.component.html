@@ -6,7 +6,8 @@
     </mat-form-field>
     <button type="submit" (click)="addProduct(productName.value)" [disabled]="addForm.pristine || addForm.invalid" color="primary">+</button>
   </form>
-  <mat-list class="product-list-container">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <mat-list class="product-list-container" *ngIf="!loading">
     <mat-list-item *ngFor="let product of products">
       <h3 matLine (click)=addToCart(product)> {{product.name}} </h3>
     </mat-list-item>
