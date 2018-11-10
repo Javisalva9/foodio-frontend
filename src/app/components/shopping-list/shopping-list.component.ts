@@ -16,6 +16,7 @@ export class ShoppingListComponent implements OnInit {
   productsOnCart: Product[];
   addForm: FormGroup;
   loading = true;
+  addingProduct = false;
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder, private router: Router) {
     this.addForm = this.formBuilder.group({
@@ -46,8 +47,11 @@ export class ShoppingListComponent implements OnInit {
   }
 
   addProduct(productName) {
+    this.addingProduct = true;
     this.productService.addProduct(productName).subscribe(() => {
       this.fetchProducts();
+      this.addingProduct = false;
+      this.addForm.reset();
     });
   }
 

@@ -4,7 +4,7 @@
     <mat-form-field>
       <input matInput class="inputaa" placeholder="I have to buy..." formControlName="productName" #productName>
     </mat-form-field>
-    <button type="submit" (click)="addProduct(productName.value)" [disabled]="addForm.pristine || addForm.invalid" color="primary">+</button>
+    <button type="submit" (click)="addProduct(productName.value)" [disabled]="addForm.pristine || addForm.invalid || addingProduct" color="primary">+</button>
   </form>
   <mat-spinner *ngIf="loading"></mat-spinner>
   <mat-list class="product-list-container" *ngIf="!loading">
